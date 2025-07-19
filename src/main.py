@@ -1,15 +1,13 @@
 import matplotlib.pyplot as plt
-import numpy as np
-import pandas as pd
 
-from signal_gen import triangle
+from src.signal.patterns import triangle
 from noises import gauss_noise, rw_noise
 
 if __name__ == '__main__':
 
-    outfunc_time , outfunc_u = triangle(200)
-    gaussian_noise = gauss_noise(200, 0, 0.2)
-    random_walk_noise = 0.1*rw_noise(200, 10, 0.5, 0.5,)
+    outfunc_time , outfunc_u = triangle(500)
+    gaussian_noise = gauss_noise(500, 0, 0.05)
+    random_walk_noise = 0.1*rw_noise(500, 3, 0.5, 0.5,)
 
     #plt.plot(time_init, values, label = "triangle signal")
     plt.plot(outfunc_time, outfunc_u, label = "interpolation")
