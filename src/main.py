@@ -1,23 +1,20 @@
 import matplotlib.pyplot as plt
 
-from src.signal.patterns import triangle
-from noises import gauss_noise, rw_noise
+from src.signal.signal import Signal
 
 if __name__ == '__main__':
 
-    outfunc_time , outfunc_u = triangle(500)
-    gaussian_noise = gauss_noise(500, 0, 0.05)
-    random_walk_noise = 0.1*rw_noise(500, 3, 0.5, 0.5,)
+    signal = Signal(lenght = 500, unit ="s" )
+    signal.insert_triangle(120,80, 5, 4)
+    signal.insert_triangle(230,20,1,0)
+    signal.insert_random_walk_noise(3,0.5,0.5, 0.1)
+    signal.insert_gaussian_noise(0,0.05)
 
     #plt.plot(time_init, values, label = "triangle signal")
-    plt.plot(outfunc_time, outfunc_u, label = "interpolation")
-    plt.plot(outfunc_time, outfunc_u+gaussian_noise, label = "interp+gauss")
-    plt.plot(outfunc_time, outfunc_u+random_walk_noise, label = "interp + symetric rw")
-    plt.plot(outfunc_time, outfunc_u+random_walk_noise+gaussian_noise, label = "interp+ gauss + symmetric rw")
+    plt.plot(signal.time, signal.values, label = "signal")
     plt.legend()
-    plt.plot()
 
-    plt.savefig("test_triangle.png")
+    plt.savefig("test_signal_class.png")
 
 
 
