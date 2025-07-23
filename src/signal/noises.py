@@ -1,11 +1,11 @@
 import numpy as np
 
-def gauss_noise(lenght, mu, sigma) :
+def gauss_noise(length, mu, sigma) :
     "Generate a gaussian noise centered on mu"
-    gaussian_noise = np.random.normal(mu, sigma, lenght)
+    gaussian_noise = np.random.normal(mu, sigma, length)
     return gaussian_noise
 
-def rw_noise(lenght, amplitude, prob_up, prob_down) :
+def rw_noise(length, amplitude, prob_up, prob_down) :
     # Probability for moving down and up
     prob = [prob_down, prob_up]
 
@@ -13,7 +13,7 @@ def rw_noise(lenght, amplitude, prob_up, prob_down) :
     start = 2
     positions = [start]
 
-    rr = np.random.random(lenght-1)
+    rr = np.random.random(length-1)
     downp = rr < prob[0]
     upp = rr > prob[1]
 
@@ -22,3 +22,4 @@ def rw_noise(lenght, amplitude, prob_up, prob_down) :
         up = iupp and positions[-1] < amplitude
         positions.append(positions[-1] - down + up)
     return np.array(positions)
+
